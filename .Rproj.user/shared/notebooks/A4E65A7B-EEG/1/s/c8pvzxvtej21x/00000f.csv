@@ -1,0 +1,1 @@
+"0","plot(signal, type = ""l"", main = ""Signal with Peaks"", xlab = ""Sample Index"", ylab = ""Amplitude"")"

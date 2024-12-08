@@ -1,0 +1,34 @@
+---
+title: "EEG"
+author: "Ruilin Peng"
+date: "2024-11-27"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+setwd("/home/ruilin/Desktop/ECE9063/Final2/EEG")
+library(pracma)
+data <- read.csv("delta_theta_alpha_beta-RAHC7_prepped.csv")
+signal <- data[,1] 
+peaks <- findpeaks(signal, minpeakheight = 10, minpeakdistance = 50)
+
+print("Detected Peaks:")
+print(peaks)
+```
+
+
+```{r}
+plot(signal, type = "l", main = "Signal with Peaks", xlab = "Sample Index", ylab = "Amplitude")
+points(peaks[,2], peaks[,1], col = "red", pch = 19) 
+```
+

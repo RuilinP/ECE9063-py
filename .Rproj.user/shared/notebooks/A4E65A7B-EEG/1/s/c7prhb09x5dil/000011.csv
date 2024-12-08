@@ -1,0 +1,7 @@
+"0","signal_delta_log <- scale(signal_delta_log)"
+"0","signal_theta_log <- scale(signal_theta_log)"
+"0","signal_alpha_log <- scale(signal_alpha_log)"
+"0","signal_beta_log <- scale(signal_beta_log)"
+"0",""
+"0",""
+"0","data_hrv$R.R.Interval.Variance <- scale(data_hrv$R.R.Interval.Variance)  "

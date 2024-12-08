@@ -1,0 +1,2 @@
+"0","library(reticulate)"
+"0","use_virtualenv(""/home/ruilin/.virtualenvs/r-tensorflow"", required = TRUE)"

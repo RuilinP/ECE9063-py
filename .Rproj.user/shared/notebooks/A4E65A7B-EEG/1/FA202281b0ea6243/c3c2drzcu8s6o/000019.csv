@@ -1,0 +1,7 @@
+"0","setwd(""/home/ruilin/Desktop/ECE9063/Final2/EEG"")"
+"0","library(pracma)"
+"0","data <- read.csv(""delta_theta_alpha_beta-RAHC7.csv"", header=FALSE)"
+"0","signal_delta <- data[,1] "
+"0","signal_theta <- data[,2] "
+"0","signal_alpha <- data[,3] "
+"0","signal_beta <- data[,4] "

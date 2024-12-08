@@ -1,0 +1,5 @@
+"0","data_log <- read.csv(""delta-theta-alpha-beta-RAHC7-decibels.csv"", header=FALSE)"
+"0","signal_delta_log <- data_log[,1] "
+"0","signal_theta_log <- data_log[,2] "
+"0","signal_alpha_log <- data_log[,3] "
+"0","signal_beta_log <- data_log[,4] "

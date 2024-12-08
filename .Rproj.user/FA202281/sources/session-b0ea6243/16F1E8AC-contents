@@ -1,0 +1,76 @@
+---
+title: "EEG"
+author: "Ruilin Peng"
+date: "2024-11-27"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+setwd("/home/ruilin/Desktop/ECE9063/Final2/EEG")
+library(pracma)
+data <- read.csv("delta_theta_alpha_beta-RAHC7.csv", header=FALSE)
+signal_delta <- data[,1] 
+signal_theta <- data[,2] 
+signal_alpha <- data[,3] 
+signal_beta <- data[,4] 
+```
+
+
+```{r}
+data_log <- read.csv("delta-theta-alpha-beta-RAHC7-decibels.csv", header=FALSE)
+signal_delta_log <- data_log[,1] 
+signal_theta_log <- data_log[,2] 
+signal_alpha_log <- data_log[,3] 
+signal_beta_log <- data_log[,4] 
+```
+
+
+```{r}
+data_hrv <- read.csv("rr_interval_variances.csv")
+```
+
+```{r}
+signal_delta_log <- scale(signal_delta_log)
+signal_theta_log <- scale(signal_theta_log)
+signal_alpha_log <- scale(signal_alpha_log)
+signal_beta_log <- scale(signal_beta_log)
+
+```
+
+```{r}
+data_hrv$R.R.Interval.Variance <- scale(data_hrv$R.R.Interval.Variance)
+```
+
+```{r}
+data_nn <- data.frame(
+  HRV_Variance = data_hrv$R.R.Interval.Variance,
+  Delta_Log = signal_delta_log,
+  Theta_Log = signal_theta_log,
+  Alpha_Log = signal_alpha_log,
+  Beta_Log = signal_beta_log
+)
+
+str(data_nn)
+```
+
+```{r}
+library(keras)
+set.seed(2024)
+
+train_index <- sample(1:nrow(data_nn), size = 0.8 * nrow(data_nn))
+train_data <- data_nn[train_index, ]
+test_data <- data_nn[-train_index, ]
+
+
+```
+
